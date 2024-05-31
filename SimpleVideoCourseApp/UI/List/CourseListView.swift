@@ -8,11 +8,71 @@
 import SwiftUI
 
 struct CourseListView: View {
+    @StateObject private var viewModel: CourseListVM = provideCourseListVM()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            ScrollView{
+                switch viewModel.courses {
+                case .success(let data):
+                    LazyVStack{
+                        ForEach(data){course in
+                            NavigationLink {
+                                CourseDetailView(course: course)
+                            } label: {
+                                CourseListItemView(course: course)
+                                    .padding(.horizontal)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                case .error(let error, _):
+                    ListEmptyView(
+                        message: error.localizedDescription,
+                        onReload: {}
+                    )
+                default:
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .primary))
+                        .padding(.horizontal)
+                }
+            }
+            .navigationTitle("Courses")
+            .onAppear{
+                viewModel.getCourses()
+            }
+        }
     }
 }
 
 #Preview {
     CourseListView()
+}
+
+struct ListEmptyView: View {
+    
+    var message: String = "Error occured"
+    var onReload: (() -> Void)? = nil
+    var body: some View {
+        VStack{
+            Image(systemName: "exclamationmark.triangle")
+            HStack{
+                Text("Ooops,")
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(.black.opacity(0.5))
+                
+                Text(message)
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(.black.opacity(0.5))
+                  
+            }.padding(.top, 10)
+            
+            if onReload != nil{
+                Button(action: {
+                    self.onReload!()
+                }){
+                    Label("Retry", systemImage: "arrow.uturn.backward.circle")
+                }.padding(.top, 16)
+            }
+        }
+    }
 }
