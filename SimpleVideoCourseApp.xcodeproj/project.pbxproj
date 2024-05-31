@@ -30,6 +30,7 @@
 		056D3C562C0930BE00245D9D /* CourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D3C552C0930BE00245D9D /* CourseDetailView.swift */; };
 		056D3C592C094F6800245D9D /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 056D3C582C094F6800245D9D /* CachedAsyncImage */; };
 		056D3C5B2C094FE600245D9D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D3C5A2C094FE600245D9D /* Extension.swift */; };
+		056D3C5D2C0958A100245D9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056D3C5C2C0958A100245D9D /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		056D3C532C09294C00245D9D /* CourseDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailVM.swift; sourceTree = "<group>"; };
 		056D3C552C0930BE00245D9D /* CourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailView.swift; sourceTree = "<group>"; };
 		056D3C5A2C094FE600245D9D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		056D3C5C2C0958A100245D9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				056D3C142C09048400245D9D /* SimpleVideoCourseAppApp.swift */,
 				056D3C1A2C09048500245D9D /* Assets.xcassets */,
 				056D3C1C2C09048500245D9D /* Preview Content */,
+				056D3C5C2C0958A100245D9D /* AppDelegate.swift */,
 			);
 			path = SimpleVideoCourseApp;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				056D3C5B2C094FE600245D9D /* Extension.swift in Sources */,
 				056D3C502C0924BA00245D9D /* CourseListView.swift in Sources */,
 				056D3C152C09048400245D9D /* SimpleVideoCourseAppApp.swift in Sources */,
+				056D3C5D2C0958A100245D9D /* AppDelegate.swift in Sources */,
 				056D3C3D2C090ABB00245D9D /* CourseResponse.swift in Sources */,
 				056D3C522C0924E600245D9D /* Injection.swift in Sources */,
 			);
