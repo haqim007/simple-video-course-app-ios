@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct CourseListItemView: View {
     let course: Course
@@ -14,7 +15,7 @@ struct CourseListItemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: course.thumbnailURL) { phase in
+            CachedAsyncImage(urlRequest: URLRequest(url: course.thumbnailURL), urlCache: .imageCache){ phase in
                 if let image = phase.image {
                     // Displays the loaded image.
                     image.resizable()
@@ -56,7 +57,7 @@ struct CourseListItemView: View {
             .padding(.vertical, 8)
         }
         .padding()
-        .frame(alignment: .top)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(Color.white)
         .overlay(
             RoundedRectangle(cornerRadius: 10)

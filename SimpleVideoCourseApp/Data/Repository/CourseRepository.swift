@@ -72,6 +72,7 @@ class CourseRepository: CourseRepositoryProtocol{
         
         do{
             completion(.loading())
+            let cache = try self.getCachedCourses().toModels()
             try service.getCourse{ result in
                 do{
                     switch result{
@@ -79,7 +80,7 @@ class CourseRepository: CourseRepositoryProtocol{
                         let result = resData.toEntities()
                         completion(.success(try self.refreshCourses(courses: result)))
                     case .failure(let err):
-                        completion(.error(err))
+                        completion(.error(err, data: cache))
                         print(err.description)
                         
                     }

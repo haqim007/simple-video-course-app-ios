@@ -25,11 +25,26 @@ struct CourseListView: View {
                             .buttonStyle(PlainButtonStyle())
                         }
                     }
-                case .error(let error, _):
-                    ListEmptyView(
-                        message: error.localizedDescription,
-                        onReload: {}
-                    )
+                case .error(let error, let data):
+                    if (data == nil || data!.isEmpty){
+                        ListEmptyView(
+                            message: error.localizedDescription,
+                            onReload: {}
+                        )
+                    }else{
+                        LazyVStack{
+                            ForEach(data!){course in
+                                NavigationLink {
+                                    CourseDetailView(course: course)
+                                } label: {
+                                    CourseListItemView(course: course)
+                                        .padding(.horizontal)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                    }
+                    
                 default:
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .primary))
@@ -56,10 +71,6 @@ struct ListEmptyView: View {
         VStack{
             Image(systemName: "exclamationmark.triangle")
             HStack{
-                Text("Ooops,")
-                  .multilineTextAlignment(.center)
-                  .foregroundColor(.black.opacity(0.5))
-                
                 Text(message)
                   .multilineTextAlignment(.center)
                   .foregroundColor(.black.opacity(0.5))
